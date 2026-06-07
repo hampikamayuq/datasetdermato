@@ -7,6 +7,12 @@ This is the shortest safe path to use the repository.
 From the repository root:
 
 ```powershell
+python scripts/dataset_validate.py
+```
+
+On Windows, this command keeps a PowerShell fallback:
+
+```powershell
 powershell -ExecutionPolicy Bypass -File scripts/validate_all.ps1
 ```
 
@@ -49,10 +55,10 @@ The script:
 - appends rows to `metadata/dataset_manifest.csv`
 - appends rows to `metadata/standardized/core_metadata_template.csv`
 
-## 4. Register an image visually
+## 4. Use the visual curation app
 
 ```powershell
-streamlit run scripts/ui_register.py
+streamlit run scripts/dataset_app.py
 ```
 
 ## 5. Audit before release
