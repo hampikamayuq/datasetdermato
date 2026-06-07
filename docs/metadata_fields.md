@@ -9,6 +9,8 @@ Important fields:
 - `image_id`: stable project identifier
 - `filename`: local image path
 - `source_id`: source catalog identifier
+- `source_type`: origin of the case or archive
+- `specialty_service`: specialty service or clinic line
 - `source_image_url`: original image URL
 - `source_page_url`: source page URL
 - `source_license_status`: permission status at image level
