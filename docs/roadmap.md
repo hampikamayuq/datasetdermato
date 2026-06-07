@@ -21,6 +21,7 @@
 - Start from anatomic pathology records when available
 - Link pathology report, case, patient hash, and image
 - Contact professor and assistant archives before broad resident outreach
+- Register `source_type` and `specialty_service` for each case
 - Classify cases as bronze, silver, or gold
 - Keep train/validation/test splits by patient
 
