@@ -1,0 +1,17 @@
+# Large and generated data
+data/raw/**
+data/processed/images/**
+annotations/masks/**
+
+# Keep directory placeholders
+!**/.gitkeep
+
+# Local analysis outputs
+notebooks/.ipynb_checkpoints/
+*.log
+*.tmp
+
+# Python
+__pycache__/
+.venv/
+.pytest_cache/
