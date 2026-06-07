@@ -30,7 +30,8 @@ def file_sha256(path: Path) -> str:
 def remove_exif(input_path: Path, output_path: Path) -> tuple[int, int]:
     with Image.open(input_path) as image:
         clean = Image.new(image.mode, image.size)
-        clean.putdata(image.getdata())
+        data = image.get_flattened_data() if hasattr(image, "get_flattened_data") else image.getdata()
+        clean.putdata(data)
         output_path.parent.mkdir(parents=True, exist_ok=True)
         clean.save(output_path)
         return clean.size

@@ -1,10 +1,13 @@
 PYTHON ?= python3
 
-.PHONY: install validate app stats
+.PHONY: install validate test app stats
 
 install:
 	$(PYTHON) -m pip install --upgrade pip
 	$(PYTHON) -m pip install -r requirements.txt
+
+test:
+	$(PYTHON) -m pytest tests/ -v
 
 validate:
 	$(PYTHON) scripts/dataset_validate.py
