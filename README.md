@@ -157,8 +157,11 @@ Documentacao:
 Scripts:
 
 - `scripts/register_image.py`: registra uma imagem (remove EXIF, detecta duplicata, escreve nos manifestos).
+- `scripts/dataset_app.py`: abre a ferramenta visual de curadoria com registro, validacao, manifesto e fontes.
+- `scripts/dataset_validate.py`: validador Python portavel para metadados, fontes e tabelas relacionais.
+- `scripts/dataset_constants.py`: constantes compartilhadas do dataset.
 - `scripts/dataset_ops.py`: modulo compartilhado usado pelo CLI e pela UI.
-- `scripts/ui_register.py`: interface visual Streamlit para registro de imagens.
+- `scripts/ui_register.py`: interface visual Streamlit mantida como entrada compativel.
 - `scripts/validate_metadata.ps1`
 - `scripts/validate_sources.ps1`
 - `scripts/validate_relational_metadata.ps1`
@@ -179,10 +182,22 @@ Scripts:
 
 ## Validacao
 
-No PowerShell:
+Com Python:
+
+```powershell
+python scripts/dataset_validate.py
+```
+
+No Windows, tambem ha um atalho PowerShell com fallback para os validadores antigos:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/validate_all.ps1
+```
+
+## Ferramenta Visual
+
+```powershell
+streamlit run scripts/dataset_app.py
 ```
 
 ## Governanca
