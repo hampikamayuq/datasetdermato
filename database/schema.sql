@@ -16,7 +16,33 @@ CREATE TABLE patients (
 CREATE TABLE cases (
   case_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   patient_id UUID NOT NULL REFERENCES patients(patient_id),
-  specialty TEXT,
+  source_type TEXT CHECK (source_type IN (
+    'faculty_collection',
+    'resident_collection',
+    'pathology_archive',
+    'clinical_archive',
+    'conference_archive',
+    'research_project',
+    'private_practice_archive',
+    'institutional_database'
+  )),
+  specialty_service TEXT CHECK (specialty_service IN (
+    'general_dermatology',
+    'pediatric_dermatology',
+    'dermatologic_surgery',
+    'dermatopathology',
+    'oncologic_dermatology',
+    'trichology',
+    'hanseniasis',
+    'autoimmune_skin_disease',
+    'contact_dermatitis',
+    'pigmented_lesions',
+    'inflammatory_skin_disease',
+    'infectious_dermatology',
+    'tropical_dermatology',
+    'cutaneous_tumors',
+    'dermoscopy'
+  )),
   body_site TEXT,
   evolution_time TEXT,
   symptoms TEXT,
@@ -83,6 +109,19 @@ CREATE TABLE pathology_reports (
   created_at TIMESTAMP DEFAULT now()
 );
 
+CREATE TABLE surgical_procedures (
+  procedure_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  case_id UUID NOT NULL REFERENCES cases(case_id),
+  procedure_type TEXT,
+  procedure_date DATE,
+  body_site TEXT,
+  surgical_margins_planned TEXT,
+  specimen_id_hash TEXT,
+  surgeon_id_hash TEXT,
+  notes TEXT,
+  created_at TIMESTAMP DEFAULT now()
+);
+
 CREATE TABLE expert_reviews (
   review_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   case_id UUID NOT NULL REFERENCES cases(case_id),
@@ -103,6 +142,19 @@ CREATE TABLE annotations (
   annotation_type TEXT,
   annotation_json JSONB,
   annotator_id_hash TEXT,
+  created_at TIMESTAMP DEFAULT now()
+);
+
+CREATE TABLE clinical_followups (
+  followup_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  case_id UUID NOT NULL REFERENCES cases(case_id),
+  followup_date DATE,
+  recurrence BOOLEAN,
+  progression BOOLEAN,
+  metastasis BOOLEAN,
+  treatment_response TEXT,
+  outcome_status TEXT,
+  notes TEXT,
   created_at TIMESTAMP DEFAULT now()
 );
 
@@ -131,6 +183,8 @@ CREATE TABLE dataset_splits (
 
 CREATE INDEX idx_cases_patient_id ON cases(patient_id);
 CREATE INDEX idx_images_case_id ON images(case_id);
+CREATE INDEX idx_surgical_procedures_case_id ON surgical_procedures(case_id);
 CREATE INDEX idx_pathology_reports_case_id ON pathology_reports(case_id);
 CREATE INDEX idx_expert_reviews_case_id ON expert_reviews(case_id);
 CREATE INDEX idx_annotations_image_id ON annotations(image_id);
+CREATE INDEX idx_clinical_followups_case_id ON clinical_followups(case_id);
