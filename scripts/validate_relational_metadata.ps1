@@ -13,6 +13,7 @@ $files = @{
     "expert_reviews.csv" = @("review_id", "case_id")
     "clinical_followups.csv" = @("followup_id", "case_id")
     "annotations.csv" = @("annotation_id", "image_id", "annotation_type")
+    "../audits/quality_audit.csv" = @("audit_id", "target_type", "target_id", "audit_type", "audit_status")
     "consents_ethics.csv" = @("ethics_id")
     "dataset_splits.csv" = @("split_id", "patient_id", "split")
 }
