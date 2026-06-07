@@ -1,15 +1,30 @@
-# datasetdermato
+# dermatology-service-dataset
 
-Estrutura inicial para organizar um dataset de imagens dermatologicas com foco em rastreabilidade, metadados padronizados proprios e separacao clara entre imagens, casos, anotacoes e fontes.
+Repositorio Git profissional destinado a organizacao, anonimizacao, curadoria, auditoria e disponibilizacao controlada de um dataset dermatologico retrospectivo proveniente de um servico dermatologico universitario/hospitalar.
 
 ## Objetivo
 
-Este repositorio organiza imagens dermatologicas coletadas de fontes publicas ou autorizadas, como paginas educacionais do DermNetNZ, datasets listados em revisoes publicas e colecoes institucionais. A estrutura foi pensada para pesquisa, curadoria e preparacao de dados para modelos de classificacao ou segmentacao.
+O projeto organiza imagens clinicas, dermatoscopicas, cirurgicas e histopatologicas acumuladas ao longo de decadas de assistencia, ensino e pesquisa. Ele foi desenhado para ser independente de qualquer instituicao especifica, permitindo uso por servicos dermatologicos, hospitais universitarios, departamentos academicos, centros de referencia, ambulatorios especializados e grupos de pesquisa em dermatologia.
+
+O dataset suporta multiplas subespecialidades dermatologicas, incluindo dermatologia clinica, dermatopediatria, cirurgia dermatologica, oncologia cutanea, dermatopatologia, dermatoscopia, doencas inflamatorias, doencas autoimunes, tricologia, hansenologia, dermatologia tropical, dermatologia infecciosa, ambulatorio de lesoes pigmentadas e ambulatorio de tumores cutaneos.
+
+O modelo permite vincular:
+
+```text
+imagem clinica
+  -> dermatoscopia
+  -> procedimento cirurgico
+  -> laudo histopatologico
+  -> revisao por especialistas
+  -> seguimento clinico
+```
+
+Ele tambem foi preparado para datasets retrospectivos iniciados a partir da decada de 1990 ou anteriores, com potencial integracao de acervos provenientes de professores, assistentes, laboratorios de dermatopatologia, arquivos historicos, apresentacoes cientificas e sistemas institucionais.
 
 ## Estrutura
 
 ```text
-datasetdermato/
+dermatology-service-dataset/
   data/
     raw/                 # arquivos originais por fonte
     processed/           # imagens normalizadas e splits
@@ -39,7 +54,7 @@ datasetdermato/
 - `metadata/sources/dermnetnz_manifest.csv`: manifesto de paginas/imagens do DermNetNZ.
 - `annotations/labels/taxonomy.csv`: taxonomia inicial para doencas e grupos clinicos.
 - `docs/collection_protocol.md`: fluxo recomendado de coleta e curadoria.
-- `docs/santa_casa_strategy.md`: estrategia para acervo institucional com patologia desde 1998.
+- `docs/service_dataset_strategy.md`: estrategia para acervos dermatologicos institucionais retrospectivos.
 - `docs/data_dictionary.md`: dicionario de campos especificos do projeto.
 - `docs/annotation_protocol.md`: protocolo de anotacao de lesoes.
 - `docs/ethics_protocol.md`: governanca etica, LGPD, CEP e acesso.
@@ -53,6 +68,7 @@ datasetdermato/
 3. Preservar URL, atribuicao, licenca, data de acesso e status de permissao.
 4. Usar identificadores internos estaveis para paciente, lesao e imagem.
 5. Separar diagnostico original, diagnostico normalizado e diagnostico revisado.
+6. Registrar `source_type` e `specialty_service` para auditoria por origem e subespecialidade.
 
 ## Referencias usadas
 
@@ -80,3 +96,7 @@ O projeto usa niveis de evidencia:
 - `gold`: imagem clinica + histopatologia + revisao especializada
 
 A divisao `train`/`validation`/`test` deve ser feita por paciente, nunca apenas por imagem.
+
+## Governanca
+
+Toda a arquitetura deve ser compativel com LGPD, anonimizacao forte, governanca de dados sensiveis, rastreabilidade, versionamento e compartilhamento controlado para pesquisa cientifica.
