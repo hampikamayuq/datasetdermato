@@ -38,7 +38,7 @@ Use this file for the project's internal standardized image metadata. Separate e
 Based on the ISIC Archive image metadata wiki, these are useful design ideas rather than strict project requirements:
 
 - Unknown or project-specific fields should be preserved, even when they are not part of an external standard.
-- `image_type` includes `dermoscopic`, `clinical: close-up`, `clinical: overview`, `TBP tile: close-up`, and `TBP tile: overview`.
+- `image_type` includes `dermoscopic`, `clinical: close-up`, `clinical: overview`, `surgical`, `histopathology`, `TBP tile: close-up`, and `TBP tile: overview`.
 - Dermoscopic images may use `dermoscopic_type`.
 - TBP tile images may use `tbp_tile_type`.
 - Public exports should clip or group age and avoid exposing raw identifiers.
