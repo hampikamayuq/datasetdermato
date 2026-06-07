@@ -1,5 +1,7 @@
 # dermatology-service-dataset
 
+[![Dataset validation](https://github.com/hampikamayuq/datasetdermato/actions/workflows/validate.yml/badge.svg)](https://github.com/hampikamayuq/datasetdermato/actions/workflows/validate.yml)
+
 Repositorio profissional para organizar, anonimizar, curar, auditar e disponibilizar de forma controlada datasets dermatologicos retrospectivos de servicos universitarios, hospitalares ou academicos.
 
 O projeto foi desenhado para acervos acumulados ao longo de anos ou decadas de assistencia, ensino e pesquisa, contendo imagens clinicas, dermatoscopicas, cirurgicas e histopatologicas, com metadados clinicos, laudos, revisao por especialistas, governanca etica e trilhas de auditoria.
@@ -223,6 +225,16 @@ No Windows, ha um atalho PowerShell com fallback para os validadores antigos:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/validate_all.ps1
+```
+
+## Testes no GitHub
+
+O reposititorio usa GitHub Actions em `.github/workflows/validate.yml` para testar Linux, macOS e Windows.
+
+O workflow roda automaticamente em `push` e `pull_request`. Tambem pode ser executado manualmente em:
+
+```text
+GitHub -> Actions -> Dataset validation -> Run workflow
 ```
 
 ## Ferramenta Visual
