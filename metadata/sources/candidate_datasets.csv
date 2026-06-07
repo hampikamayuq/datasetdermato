@@ -1,0 +1,13 @@
+dataset_id,dataset_name,homepage_url,source_or_index,modality,primary_task,license_status,download_status,notes
+isic_archive,ISIC Archive,https://www.isic-archive.com/,source,dermoscopy,classification/segmentation,review_required,pending,Large public archive with dataset-specific licenses and metadata conventions.
+ham10000,HAM10000,https://www.nature.com/articles/sdata2018161,source,dermoscopy,classification,review_required,pending,Common benchmark with seven diagnostic categories.
+dermamnist,DermaMNIST,https://medmnist.com/,source,dermoscopy,classification,review_required,pending,Small normalized benchmark derived from HAM10000.
+sd198,SD-198,,source,clinical images,classification,review_required,pending,Clinical image dataset frequently cited for 198 skin disease classes.
+pad_ufes_20,PAD-UFES-20,https://data.mendeley.com/datasets/zr7vgbcyr2,source,clinical images,classification,review_required,pending,Brazilian clinical images with patient metadata.
+ph2,PH2 Database,https://www.fc.up.pt/addi/ph2%20database.html,source,dermoscopy,segmentation/classification,review_required,pending,Dermoscopic images with lesion segmentation masks.
+derm7pt,Derm7pt,https://derm.cs.sfu.ca/,source,dermoscopy,classification,review_required,pending,Seven-point checklist metadata for dermoscopy.
+fitzpatrick17k,Fitzpatrick 17k,https://github.com/mattgroh/fitzpatrick17k,source,clinical images,classification/fairness,review_required,pending,Clinical images with Fitzpatrick skin type labels.
+bcn20000,BCN20000,,source,dermoscopy,classification,review_required,pending,Dermoscopic dataset associated with BCN/ISIC collections.
+siim_isic,SIIM-ISIC Melanoma Classification,https://www.kaggle.com/c/siim-isic-melanoma-classification,source,dermoscopy,classification,review_required,pending,Kaggle challenge dataset; verify Kaggle terms before reuse.
+dermnetnz,DermNetNZ,https://dermnetnz.org/,source,clinical/educational,classification/curation,verify_before_use,pending,Educational atlas; record terms and attribution before downloading or redistributing images.
+skinive_review,Skinive skin disease dataset review,https://skinive.com/skin-disease-datasets/,index,mixed,dataset discovery,not_image_source,complete,Use as a reference list, not as image provenance.
