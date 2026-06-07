@@ -67,7 +67,7 @@ Allowed `specialty_service` values:
 
 ## images
 
-- `image_type`: clinical, dermoscopy, pathology, surgical, histopathology
+- `image_type`: `dermoscopic`, `clinical: overview`, `clinical: close-up`, `surgical`, `histopathology`, `TBP tile: close-up`, or `TBP tile: overview`
 - `device`: camera or acquisition device
 - `width`: image width in pixels
 - `height`: image height in pixels
