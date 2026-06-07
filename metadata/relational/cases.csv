@@ -1,0 +1,1 @@
+case_id,patient_id,specialty,body_site,evolution_time,symptoms,previous_treatment,recurrence,immunosuppression,clinical_diagnosis,final_diagnosis,diagnosis_primary,diagnosis_secondary,diagnosis_group,cid10,cid11,snomed_ct,certainty_grade,confirmation_method,evidence_level,diagnosis_source,case_date,dataset_version,source_site,notes,created_at
