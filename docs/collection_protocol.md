@@ -22,31 +22,45 @@ For each DermNetNZ condition page:
 
 ## 3. Image ingestion
 
-Use the following naming convention:
+Copy the source image to `data/raw/<source_id>/images/` and then register it with:
 
-```text
-data/raw/<source_id>/images/<source_id>_<condition_slug>_<sequence>.<ext>
-data/processed/images/<source_id>_<condition_slug>_<sequence>_processed.<ext>
+```bash
+python scripts/register_image.py data/raw/<source_id>/images/<file> \
+    --source-id <source_id> \
+    --image-type "dermoscopic" \
+    --diagnosis "melanoma" \
+    [--patient-id P001] \
+    [--lesion-id L001] \
+    [--specialty oncologic_dermatology] \
+    [--source-url "https://..."] \
+    [--notes "..."]
 ```
 
-Do not process or redistribute an image until its source row has a known license status.
+The script automatically:
+- rejects duplicates (SHA256 check against the manifest)
+- strips EXIF and saves to `data/processed/images/`
+- appends one row to `metadata/dataset_manifest.csv`
+- appends one row to `metadata/standardized/core_metadata_template.csv`
+- hashes the patient identifier before writing
 
-## 4. Metadata
+Do not register an image until its source row has a known license status in `source_catalog.csv`.
 
-Every accepted image should have:
+## 4. After registration
 
-- one row in `metadata/sources/dermnetnz_manifest.csv`
-- one row in `metadata/standardized/core_metadata_template.csv` or a generated export table
-- one normalized label from `annotations/labels/taxonomy.csv`
+Fill in any blank fields left in the manifest and core metadata rows that the script could not infer (e.g. `benign_malignant`, `diagnosis_confirm_type`, `anatom_site_general`).
+
+Run validation to confirm no errors:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/validate_metadata.ps1
+```
 
 ## 5. Quality checks
 
-Minimum recommended checks:
+Minimum recommended checks (most are enforced by the script; these require human review):
 
-- image opens without corruption
 - image is dermatology-relevant
 - no visible identifying information unless explicitly allowed and ethically reviewed
-- duplicate images are detected and linked
 - diagnosis label is traceable to source page or expert review
 
 ## 6. Splits
