@@ -141,6 +141,7 @@ Banco de dados:
 Documentacao:
 
 - `docs/service_dataset_strategy.md`: estrategia para acervos institucionais retrospectivos.
+- `docs/quickstart.md`: caminho curto para validar e registrar imagens.
 - `docs/data_dictionary.md`: dicionario de dados.
 - `docs/datasheet_for_dataset.md`: datasheet do dataset.
 - `docs/dataset_card.md`: dataset card.
@@ -156,9 +157,12 @@ Documentacao:
 Scripts:
 
 - `scripts/register_image.py`: registra uma imagem (remove EXIF, detecta duplicata, escreve nos manifestos).
+- `scripts/dataset_ops.py`: modulo compartilhado usado pelo CLI e pela UI.
+- `scripts/ui_register.py`: interface visual Streamlit para registro de imagens.
 - `scripts/validate_metadata.ps1`
 - `scripts/validate_sources.ps1`
 - `scripts/validate_relational_metadata.ps1`
+- `scripts/validate_all.ps1`
 - `scripts/new_split_template.ps1`
 - `scripts/ingest_image.py`: modulo de utilidades usado pelo register_image.
 
@@ -178,9 +182,7 @@ Scripts:
 No PowerShell:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts/validate_metadata.ps1
-powershell -ExecutionPolicy Bypass -File scripts/validate_sources.ps1
-powershell -ExecutionPolicy Bypass -File scripts/validate_relational_metadata.ps1
+powershell -ExecutionPolicy Bypass -File scripts/validate_all.ps1
 ```
 
 ## Governanca
