@@ -167,6 +167,8 @@ Scripts:
 - `scripts/validate_relational_metadata.ps1`
 - `scripts/validate_all.ps1`
 - `scripts/validate_all.sh`
+- `scripts/run_app.ps1`
+- `scripts/run_app.sh`
 - `scripts/new_split_template.ps1`
 - `scripts/ingest_image.py`: modulo de utilidades usado pelo register_image.
 - `Makefile`: atalhos `make install`, `make validate` e `make app` para macOS/Linux.
@@ -225,8 +227,22 @@ powershell -ExecutionPolicy Bypass -File scripts/validate_all.ps1
 
 ## Ferramenta Visual
 
+macOS/Linux:
+
 ```bash
-streamlit run scripts/dataset_app.py
+sh scripts/run_app.sh
+```
+
+Windows PowerShell:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_app.ps1
+```
+
+Com Python, em qualquer sistema:
+
+```bash
+python -m streamlit run scripts/dataset_app.py
 ```
 
 ## Governanca
