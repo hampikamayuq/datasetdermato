@@ -7,56 +7,18 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
+from dataset_constants import (
+    CORE_META,
+    IMAGE_TYPES,
+    MANIFEST,
+    PROCESSED_DIR,
+    REPO_ROOT,
+    SOURCE_CATALOG,
+    SOURCE_TYPE_OPTIONS,
+    SPECIALTY_OPTIONS,
+    TAXONOMY,
+)
 from ingest_image import file_sha256, hash_identifier, make_uuid, remove_exif
-
-
-REPO_ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = REPO_ROOT / "metadata" / "dataset_manifest.csv"
-CORE_META = REPO_ROOT / "metadata" / "standardized" / "core_metadata_template.csv"
-PROCESSED_DIR = REPO_ROOT / "data" / "processed" / "images"
-SOURCE_CATALOG = REPO_ROOT / "metadata" / "sources" / "source_catalog.csv"
-TAXONOMY = REPO_ROOT / "annotations" / "labels" / "taxonomy.csv"
-
-IMAGE_TYPES = [
-    "dermoscopic",
-    "clinical: overview",
-    "clinical: close-up",
-    "surgical",
-    "histopathology",
-    "TBP tile: close-up",
-    "TBP tile: overview",
-]
-
-SOURCE_TYPE_OPTIONS = [
-    "",
-    "faculty_collection",
-    "resident_collection",
-    "pathology_archive",
-    "clinical_archive",
-    "conference_archive",
-    "research_project",
-    "private_practice_archive",
-    "institutional_database",
-]
-
-SPECIALTY_OPTIONS = [
-    "",
-    "general_dermatology",
-    "pediatric_dermatology",
-    "dermatologic_surgery",
-    "dermatopathology",
-    "oncologic_dermatology",
-    "trichology",
-    "hanseniasis",
-    "autoimmune_skin_disease",
-    "contact_dermatitis",
-    "pigmented_lesions",
-    "inflammatory_skin_disease",
-    "infectious_dermatology",
-    "tropical_dermatology",
-    "cutaneous_tumors",
-    "dermoscopy",
-]
 
 
 def load_csv_values(path: Path, column: str) -> list[str]:
