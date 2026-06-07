@@ -1,0 +1,11 @@
+label_id,label_name,parent_label,clinical_group,malignancy,isic_mapping,notes
+unknown,Unknown,,unknown,unknown,,Use when the source page or curator has not assigned a diagnosis.
+melanoma,Melanoma,skin cancer,neoplasm,malignant,Melanoma,
+basal_cell_carcinoma,Basal cell carcinoma,skin cancer,neoplasm,malignant,Basal cell carcinoma,
+squamous_cell_carcinoma,Squamous cell carcinoma,skin cancer,neoplasm,malignant,Squamous cell carcinoma,
+nevus,Nevus,melanocytic lesion,nevus,benign,Nevus,
+seborrheic_keratosis,Seborrheic keratosis,benign keratosis,keratosis,benign,Seborrheic keratosis,
+eczema,Eczema,dermatitis,inflammatory,benign,,Common inflammatory disease group.
+psoriasis,Psoriasis,papulosquamous,inflammatory,benign,,Common inflammatory disease group.
+acne,Acne,follicular disorder,inflammatory,benign,,Common inflammatory disease group.
+fungal_infection,Fungal infection,infection,infection,benign,,Normalize specific fungal diagnoses under this group when needed.
