@@ -166,8 +166,10 @@ Scripts:
 - `scripts/validate_sources.ps1`
 - `scripts/validate_relational_metadata.ps1`
 - `scripts/validate_all.ps1`
+- `scripts/validate_all.sh`
 - `scripts/new_split_template.ps1`
 - `scripts/ingest_image.py`: modulo de utilidades usado pelo register_image.
+- `Makefile`: atalhos `make install`, `make validate` e `make app` para macOS/Linux.
 
 ## Regras Praticas
 
@@ -180,15 +182,42 @@ Scripts:
 7. Auditar duplicatas, near-duplicates, leakage entre splits, rotulos e identificadores antes de qualquer release.
 8. Reportar representatividade por fototipo/skin tone, idade, sexo, topografia, origem e subespecialidade quando eticamente permitido.
 
-## Validacao
+## Instalar
 
-Com Python:
+macOS/Linux:
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+Windows PowerShell:
 
 ```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+## Validacao
+
+Com Python, em qualquer sistema:
+
+```bash
 python scripts/dataset_validate.py
 ```
 
-No Windows, tambem ha um atalho PowerShell com fallback para os validadores antigos:
+macOS/Linux tambem podem usar:
+
+```bash
+sh scripts/validate_all.sh
+make validate
+```
+
+No Windows, ha um atalho PowerShell com fallback para os validadores antigos:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/validate_all.ps1
@@ -196,7 +225,7 @@ powershell -ExecutionPolicy Bypass -File scripts/validate_all.ps1
 
 ## Ferramenta Visual
 
-```powershell
+```bash
 streamlit run scripts/dataset_app.py
 ```
 
