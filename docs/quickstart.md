@@ -2,12 +2,39 @@
 
 This is the shortest safe path to use the repository.
 
-## 1. Validate the repository
+## 1. Install dependencies
+
+macOS/Linux:
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+Windows PowerShell:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+## 2. Validate the repository
 
 From the repository root:
 
-```powershell
+```bash
 python scripts/dataset_validate.py
+```
+
+macOS/Linux can also use:
+
+```bash
+sh scripts/validate_all.sh
+make validate
 ```
 
 On Windows, this command keeps a PowerShell fallback:
@@ -16,7 +43,7 @@ On Windows, this command keeps a PowerShell fallback:
 powershell -ExecutionPolicy Bypass -File scripts/validate_all.ps1
 ```
 
-## 2. Review source and ethics status
+## 3. Review source and ethics status
 
 Before adding images:
 
@@ -25,25 +52,24 @@ Before adding images:
 - confirm ethics and governance status
 - decide whether the image can be public, controlled-access, or internal-only
 
-## 3. Register an image by command line
+## 4. Register an image by command line
 
 Python and dependencies are required:
 
-```powershell
-python -m pip install -r requirements.txt
+```bash
 python scripts/register_image.py image.jpg --source-id dermnetnz --image-type "clinical: close-up" --diagnosis melanoma
 ```
 
 Optional context:
 
-```powershell
-python scripts/register_image.py image.jpg `
-  --source-id institutional_archive `
-  --source-type clinical_archive `
-  --specialty-service oncologic_dermatology `
-  --image-type "clinical: close-up" `
-  --diagnosis "basal cell carcinoma" `
-  --patient-id P001 `
+```bash
+python scripts/register_image.py image.jpg \
+  --source-id institutional_archive \
+  --source-type clinical_archive \
+  --specialty-service oncologic_dermatology \
+  --image-type "clinical: close-up" \
+  --diagnosis "basal cell carcinoma" \
+  --patient-id P001 \
   --lesion-id L001
 ```
 
@@ -55,13 +81,19 @@ The script:
 - appends rows to `metadata/dataset_manifest.csv`
 - appends rows to `metadata/standardized/core_metadata_template.csv`
 
-## 4. Use the visual curation app
+## 5. Use the visual curation app
 
-```powershell
+```bash
 streamlit run scripts/dataset_app.py
 ```
 
-## 5. Audit before release
+Or on macOS/Linux:
+
+```bash
+make app
+```
+
+## 6. Audit before release
 
 Before any dataset release:
 
