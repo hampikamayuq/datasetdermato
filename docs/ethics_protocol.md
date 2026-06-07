@@ -47,3 +47,18 @@ Minimum steps:
 ## LGPD note
 
 Health images and linked clinical metadata should be treated as sensitive personal data. Any release must be reviewed under the institution's ethics and legal governance.
+
+## Brazil research governance
+
+For Brazilian research settings, align the project with:
+
+- CNS Resolution 466/2012 for the general ethical framework of research involving human participants.
+- CNS Resolution 738/2024 for scientific research databases involving human participants.
+- Local CEP/CONEP guidance for use, reuse, sharing, and repository deposition of anonymized or sensitive databases.
+
+Dataset release should distinguish:
+
+- anonymized public metadata
+- controlled-access images
+- sensitive or identifiable data that must remain restricted
+- reuse scenarios requiring new ethics review
