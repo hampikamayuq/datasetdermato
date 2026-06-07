@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+title: dermatology-service-dataset
+message: >-
+  Se você usar este framework de dataset em uma publicação,
+  por favor cite conforme abaixo.
+type: software
+authors:
+  - name: "hampikamayuq"
+    alias: hampikamayuq
+repository-code: https://github.com/hampikamayuq/datasetdermato
+abstract: >-
+  Framework para organizar, anonimizar, curar, auditar e disponibilizar
+  datasets dermatológicos retrospectivos de serviços universitários,
+  hospitalares e acadêmicos. Suporta imagens clínicas, dermatoscópicas,
+  cirúrgicas e histopatológicas com metadados clínicos, laudos,
+  revisão por especialistas, governança ética e trilhas de auditoria.
+keywords:
+  - dermatology
+  - medical imaging
+  - skin lesion
+  - dataset
+  - LGPD
+  - dermoscopy
+  - histopathology
+  - clinical images
+  - Brazil
+  - AI in medicine
+license: CC-BY-4.0
+date-released: "2026-06-07"

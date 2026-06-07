@@ -1,3 +1,25 @@
+---
+license: cc-by-4.0
+task_categories:
+  - image-classification
+  - object-detection
+language:
+  - pt
+  - en
+tags:
+  - dermatology
+  - medical-imaging
+  - skin-lesion
+  - dermoscopy
+  - histopathology
+  - clinical-images
+  - LGPD
+  - Brazil
+pretty_name: Dermatology Service Dataset
+size_categories:
+  - n<1K
+---
+
 # dermatology-service-dataset
 
 [![Dataset validation](https://github.com/hampikamayuq/datasetdermato/actions/workflows/validate.yml/badge.svg)](https://github.com/hampikamayuq/datasetdermato/actions/workflows/validate.yml)

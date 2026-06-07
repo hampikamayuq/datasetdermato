@@ -1,6 +1,6 @@
 PYTHON ?= python3
 
-.PHONY: install validate app
+.PHONY: install validate app stats
 
 install:
 	$(PYTHON) -m pip install --upgrade pip
@@ -11,3 +11,6 @@ validate:
 
 app:
 	$(PYTHON) -m streamlit run scripts/dataset_app.py
+
+stats:
+	$(PYTHON) scripts/dataset_stats.py --csv
