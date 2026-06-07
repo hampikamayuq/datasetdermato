@@ -37,6 +37,16 @@ Primary metadata fields follow the project core metadata template, inspired by d
 - diagnosis
 - diagnosis confirmation type
 
+## Documentation artifacts
+
+Each release should include:
+
+- `docs/datasheet_for_dataset.md`
+- `docs/quality_audit_protocol.md`
+- `docs/fairness_bias_plan.md`
+- `docs/publication_guidelines.md`
+- `metadata/audits/quality_audit.csv`
+
 ## Known risks
 
 - Label noise from educational pages or non-expert extraction
