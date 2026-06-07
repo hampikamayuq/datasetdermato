@@ -61,8 +61,8 @@ def display_path(path: Path) -> str:
 
 def read_header(path: Path) -> list[str]:
     with path.open(newline="", encoding="utf-8") as handle:
-        first_line = handle.readline().strip("\ufeff\r\n")
-    return first_line.split(",") if first_line else []
+        reader = csv.reader(handle)
+        return next(reader, [])
 
 
 def read_rows(path: Path) -> list[dict[str, str]]:

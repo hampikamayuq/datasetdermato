@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import csv
+import os
 import re
+import tempfile
 import unicodedata
 from datetime import date
 from pathlib import Path
@@ -45,9 +47,11 @@ def known_sha256s() -> set[str]:
 
 def csv_fieldnames(csv_path: Path, fallback: list[str]) -> list[str]:
     if csv_path.exists() and csv_path.stat().st_size > 0:
-        header = csv_path.read_text(encoding="utf-8").splitlines()[0]
-        if header.strip():
-            return header.split(",")
+        with csv_path.open(newline="", encoding="utf-8") as handle:
+            reader = csv.reader(handle)
+            header = next(reader, None)
+            if header:
+                return header
     return fallback
 
 
@@ -100,15 +104,22 @@ def register_image_file(
     image_id = make_uuid()
     suffix = Path(original_name or src.name).suffix or ".jpg"
     out_name = f"{source_id}_{slugify(diagnosis)}_{image_id[:8]}{suffix}"
-    out_path = PROCESSED_DIR / out_name
+
+    # Process to a temp file first; only move to final path after duplicate check.
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
-
-    width, height = remove_exif(src, out_path)
-    processed_hash = file_sha256(out_path)
-
-    if processed_hash in known_sha256s():
-        out_path.unlink(missing_ok=True)
-        raise ValueError(f"Duplicate image: SHA256 {processed_hash[:16]} already exists in manifest.")
+    tmp_fd, tmp_name = tempfile.mkstemp(suffix=suffix, dir=PROCESSED_DIR)
+    tmp_path = Path(tmp_name)
+    try:
+        os.close(tmp_fd)
+        width, height = remove_exif(src, tmp_path)
+        processed_hash = file_sha256(tmp_path)
+        if processed_hash in known_sha256s():
+            raise ValueError(f"Duplicate image: SHA256 {processed_hash[:16]} already exists in manifest.")
+        out_path = PROCESSED_DIR / out_name
+        tmp_path.rename(out_path)
+    except Exception:
+        tmp_path.unlink(missing_ok=True)
+        raise
 
     patient_hash = hash_identifier(patient_id, source_id) if patient_id else ""
     filename = str(out_path.relative_to(REPO_ROOT)).replace("\\", "/")
