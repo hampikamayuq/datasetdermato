@@ -2,11 +2,11 @@
 
 ## Dataset name
 
-datasetdermato
+dermatology-service-dataset
 
 ## Intended use
 
-Research and development of dermatology image organization, labeling, preprocessing, and model prototyping workflows.
+Organization, anonymization, curation, audit, controlled sharing, and research use of retrospective dermatology datasets from university or hospital dermatology services.
 
 ## Out-of-scope use
 
@@ -21,6 +21,7 @@ Initial source candidates:
 - DermNetNZ dermatology atlas pages
 - ISIC Archive metadata conventions as external inspiration
 - Public dataset candidates listed in the Skinive review
+- Faculty, resident, pathology, conference, research, private practice, clinical archive, and institutional database collections when ethically approved
 
 ## Data fields
 
@@ -53,4 +54,6 @@ Track metrics by:
 - skin tone, when ethically available
 - anatomic site
 - source
+- source type
+- specialty service
 - train/validation/test split
