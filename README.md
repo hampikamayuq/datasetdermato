@@ -155,11 +155,12 @@ Documentacao:
 
 Scripts:
 
+- `scripts/register_image.py`: registra uma imagem (remove EXIF, detecta duplicata, escreve nos manifestos).
 - `scripts/validate_metadata.ps1`
 - `scripts/validate_sources.ps1`
 - `scripts/validate_relational_metadata.ps1`
 - `scripts/new_split_template.ps1`
-- `scripts/ingest_image.py`
+- `scripts/ingest_image.py`: modulo de utilidades usado pelo register_image.
 
 ## Regras Praticas
 
