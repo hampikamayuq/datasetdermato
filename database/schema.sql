@@ -83,6 +83,8 @@ CREATE TABLE images (
   approximate_distance TEXT,
   has_scale BOOLEAN,
   quality_score TEXT,
+  duplicate_group_id TEXT,
+  leakage_risk BOOLEAN DEFAULT false,
   anonymization_status TEXT,
   has_identifying_risk BOOLEAN DEFAULT false,
   sha256 TEXT,
@@ -158,6 +160,19 @@ CREATE TABLE clinical_followups (
   created_at TIMESTAMP DEFAULT now()
 );
 
+CREATE TABLE quality_audits (
+  audit_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  target_type TEXT CHECK (target_type IN ('patient', 'case', 'image', 'pathology_report', 'split', 'dataset_version')),
+  target_id TEXT NOT NULL,
+  audit_type TEXT,
+  audit_status TEXT,
+  severity TEXT CHECK (severity IN ('low', 'medium', 'high', 'critical')),
+  reviewer_id_hash TEXT,
+  reviewed_at TIMESTAMP DEFAULT now(),
+  remediation_action TEXT,
+  notes TEXT
+);
+
 CREATE TABLE consents_ethics (
   ethics_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   case_id UUID REFERENCES cases(case_id),
@@ -188,3 +203,4 @@ CREATE INDEX idx_pathology_reports_case_id ON pathology_reports(case_id);
 CREATE INDEX idx_expert_reviews_case_id ON expert_reviews(case_id);
 CREATE INDEX idx_annotations_image_id ON annotations(image_id);
 CREATE INDEX idx_clinical_followups_case_id ON clinical_followups(case_id);
+CREATE INDEX idx_quality_audits_target ON quality_audits(target_type, target_id);
