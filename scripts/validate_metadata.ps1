@@ -41,7 +41,7 @@ if (-not (Test-Path -LiteralPath $MetadataPath)) {
 }
 
 $rows = Import-Csv -LiteralPath $MetadataPath
-$header = (Get-Content -LiteralPath $MetadataPath -TotalCount 1).Split(",")
+$header = if ($rows.Count -gt 0) { $rows[0].PSObject.Properties.Name } else { @() }
 
 foreach ($column in $requiredColumns) {
     if ($header -notcontains $column) {

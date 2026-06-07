@@ -204,3 +204,6 @@ CREATE INDEX idx_expert_reviews_case_id ON expert_reviews(case_id);
 CREATE INDEX idx_annotations_image_id ON annotations(image_id);
 CREATE INDEX idx_clinical_followups_case_id ON clinical_followups(case_id);
 CREATE INDEX idx_quality_audits_target ON quality_audits(target_type, target_id);
+CREATE INDEX idx_images_sha256 ON images(sha256);
+CREATE INDEX idx_cases_evidence_level ON cases(evidence_level);
+CREATE INDEX idx_dataset_splits_split ON dataset_splits(split);

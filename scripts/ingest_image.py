@@ -28,12 +28,12 @@ def file_sha256(path: Path) -> str:
 
 
 def remove_exif(input_path: Path, output_path: Path) -> tuple[int, int]:
-    image = Image.open(input_path)
-    clean = Image.new(image.mode, image.size)
-    clean.putdata(list(image.getdata()))
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    clean.save(output_path)
-    return clean.size
+    with Image.open(input_path) as image:
+        clean = Image.new(image.mode, image.size)
+        clean.putdata(image.getdata())
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        clean.save(output_path)
+        return clean.size
 
 
 def create_image_record(
