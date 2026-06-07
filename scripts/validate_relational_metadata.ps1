@@ -6,10 +6,12 @@ $ErrorActionPreference = "Stop"
 
 $files = @{
     "patients.csv" = @("patient_id", "patient_hash")
-    "cases.csv" = @("case_id", "patient_id", "evidence_level")
+    "cases.csv" = @("case_id", "patient_id", "source_type", "specialty_service", "evidence_level")
     "images.csv" = @("image_id", "case_id", "image_type", "file_path")
+    "surgical_procedures.csv" = @("procedure_id", "case_id")
     "pathology_reports.csv" = @("report_id", "case_id")
     "expert_reviews.csv" = @("review_id", "case_id")
+    "clinical_followups.csv" = @("followup_id", "case_id")
     "annotations.csv" = @("annotation_id", "image_id", "annotation_type")
     "consents_ethics.csv" = @("ethics_id")
     "dataset_splits.csv" = @("split_id", "patient_id", "split")
