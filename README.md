@@ -32,6 +32,7 @@ dermatology-service-dataset/
     standardized/        # metadados centrais do projeto, inspirados por padroes externos
     relational/          # tabelas CSV equivalentes ao modelo relacional
     sources/             # catalogo e manifesto de coleta por fonte
+    audits/              # auditoria de qualidade, duplicatas, leakage e fairness
   database/              # schema PostgreSQL
   annotations/
     labels/              # rotulos revisados, taxonomia e mapeamentos
@@ -48,6 +49,8 @@ dermatology-service-dataset/
 - `metadata/standardized/core_metadata_schema.json`: schema simples para validar campos principais.
 - `metadata/dataset_manifest.csv`: manifesto central com imagem, fonte, hash, label, qualidade e split.
 - `metadata/relational/*.csv`: tabelas para pacientes, casos, imagens, patologia, revisoes, anotacoes e splits.
+- `metadata/audits/quality_audit.csv`: template para auditoria de duplicatas, leakage, rotulos e qualidade.
+- `metadata/audits/fairness_summary_template.csv`: template para sumario de representatividade por subgrupo.
 - `database/schema.sql`: schema PostgreSQL para o modelo institucional.
 - `metadata/sources/source_catalog.csv`: cadastro das fontes e status de permissao.
 - `metadata/sources/candidate_datasets.csv`: datasets dermatologicos candidatos para revisao.
@@ -58,6 +61,11 @@ dermatology-service-dataset/
 - `docs/data_dictionary.md`: dicionario de campos especificos do projeto.
 - `docs/annotation_protocol.md`: protocolo de anotacao de lesoes.
 - `docs/ethics_protocol.md`: governanca etica, LGPD, CEP e acesso.
+- `docs/datasheet_for_dataset.md`: template de datasheet para documentacao formal do dataset.
+- `docs/quality_audit_protocol.md`: protocolo de duplicatas, vazamento, rotulos e qualidade.
+- `docs/fairness_bias_plan.md`: plano de representatividade e avaliacao por subgrupos.
+- `docs/publication_guidelines.md`: checklist para TRIPOD+AI, STARD-AI e CONSORT-AI.
+- `docs/literature_review.md`: referencias cientificas e decisoes de desenho aplicadas.
 - `docs/dermnetnz_curation.md`: guia especifico para curadoria DermNetNZ.
 - `docs/licensing_and_ethics.md`: cuidados com licenca, privacidade e redistribuicao.
 
@@ -69,6 +77,7 @@ dermatology-service-dataset/
 4. Usar identificadores internos estaveis para paciente, lesao e imagem.
 5. Separar diagnostico original, diagnostico normalizado e diagnostico revisado.
 6. Registrar `source_type` e `specialty_service` para auditoria por origem e subespecialidade.
+7. Auditar duplicatas, leakage entre splits, qualidade, rotulos e identificadores antes de qualquer release.
 
 ## Referencias usadas
 
@@ -76,6 +85,7 @@ dermatology-service-dataset/
 - ISIC Archive image metadata wiki: https://github.com/ImageMarkup/isic-archive/wiki/Image#metadata
 - DermNetNZ: https://dermnetnz.org/
 - Skinive review de datasets: https://skinive.com/skin-disease-datasets/
+- Esteva et al. 2017; HAM10000; DDI; Fitzpatrick17k; DERM12345; Datasheets for Datasets; TRIPOD+AI; CONSORT-AI; STARD-AI; CNS 466/2012; CNS 738/2024.
 
 ## Validacao
 
