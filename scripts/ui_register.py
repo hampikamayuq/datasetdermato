@@ -1,4 +1,4 @@
-"""Visual image registration tool.
+"""Visual dataset curation tool.
 
 Run with:
     streamlit run scripts/ui_register.py
@@ -12,6 +12,7 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
+from dataset_constants import SOURCE_CATALOG
 from dataset_ops import (
     IMAGE_TYPES,
     MANIFEST,
@@ -21,6 +22,7 @@ from dataset_ops import (
     load_source_ids,
     register_image_file,
 )
+from dataset_validate import validate_all
 
 
 def manifest_preview() -> None:
@@ -29,6 +31,16 @@ def manifest_preview() -> None:
         return
 
     df = pd.read_csv(MANIFEST)
+    if df.empty:
+        st.info("No registered images yet.")
+        return
+
+    metric_cols = st.columns(4)
+    metric_cols[0].metric("Images", len(df))
+    metric_cols[1].metric("Sources", df["source_id"].nunique() if "source_id" in df else 0)
+    metric_cols[2].metric("Pending quality", int((df.get("quality_status") == "pending").sum()) if "quality_status" in df else 0)
+    metric_cols[3].metric("Pending review", int((df.get("review_status") == "pending").sum()) if "review_status" in df else 0)
+
     cols = [
         "image_id",
         "filename",
@@ -43,14 +55,69 @@ def manifest_preview() -> None:
     st.dataframe(df[[c for c in cols if c in df.columns]], use_container_width=True)
 
 
+def validation_panel() -> None:
+    if st.button("Run validation", type="primary"):
+        st.session_state["validation_results"] = validate_all()
+
+    results = st.session_state.get("validation_results")
+    if not results:
+        st.info("Validation has not run yet.")
+        return
+
+    total_errors = sum(len(result.errors) for result in results)
+    total_warnings = sum(len(result.warnings) for result in results)
+
+    metric_cols = st.columns(3)
+    metric_cols[0].metric("Checks", len(results))
+    metric_cols[1].metric("Errors", total_errors)
+    metric_cols[2].metric("Warnings", total_warnings)
+
+    for result in results:
+        if result.ok:
+            st.success(f"{result.name}: passed")
+        else:
+            st.error(f"{result.name}: {len(result.errors)} error(s)")
+        if result.warnings:
+            st.warning("\n".join(result.warnings))
+        if result.errors:
+            st.code("\n".join(result.errors), language="text")
+
+
+def sources_panel() -> None:
+    if not SOURCE_CATALOG.exists() or SOURCE_CATALOG.stat().st_size == 0:
+        st.info("No source catalog found.")
+        return
+
+    df = pd.read_csv(SOURCE_CATALOG)
+    if df.empty:
+        st.info("No sources registered yet.")
+        return
+
+    metric_cols = st.columns(3)
+    metric_cols[0].metric("Sources", len(df))
+    metric_cols[1].metric(
+        "Controlled access",
+        int((df.get("access_type") == "controlled access").sum()) if "access_type" in df else 0,
+    )
+    metric_cols[2].metric(
+        "Verify redistribution",
+        int(df.get("redistribution_status", pd.Series(dtype=str)).astype(str).str.contains("verify", case=False, na=False).sum())
+        if "redistribution_status" in df
+        else 0,
+    )
+    st.dataframe(df, use_container_width=True)
+
+
 def main() -> None:
-    st.set_page_config(page_title="Dermatology Image Registration", layout="wide")
-    st.title("Dermatology Image Registration")
+    st.set_page_config(page_title="Dermatology Dataset Curation", layout="wide")
+    st.title("Dermatology Dataset Curation")
 
     source_ids = load_source_ids()
     diagnoses = load_diagnoses()
 
-    tab_register, tab_manifest = st.tabs(["Register image", "Manifest"])
+    tab_register, tab_validation, tab_manifest, tab_sources = st.tabs(
+        ["Register image", "Validation", "Manifest", "Sources"]
+    )
 
     with tab_register:
         col_img, col_form = st.columns([1, 1], gap="large")
@@ -125,6 +192,14 @@ def main() -> None:
         if st.button("Refresh"):
             st.rerun()
         manifest_preview()
+
+    with tab_validation:
+        st.subheader("Dataset validation")
+        validation_panel()
+
+    with tab_sources:
+        st.subheader("Source catalog")
+        sources_panel()
 
 
 if __name__ == "__main__":
