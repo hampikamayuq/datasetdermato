@@ -1,1 +1,1 @@
-image_id,filename,source_id,source_image_url,source_page_url,source_license_status,attribution,accessed_at,sha256,width,height,image_type,diagnosis_original,diagnosis_normalized,label_id,patient_id,lesion_id,split,quality_status,review_status,notes
+image_id,filename,source_id,source_type,specialty_service,source_image_url,source_page_url,source_license_status,attribution,accessed_at,sha256,width,height,image_type,diagnosis_original,diagnosis_normalized,label_id,patient_id,lesion_id,split,quality_status,review_status,notes
