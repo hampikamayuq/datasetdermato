@@ -1,0 +1,1 @@
+report_id,case_id,pathology_number_hash,report_date,biopsy_relative_date,histological_diagnosis,histological_type,subtype,margins,breslow_mm,clark_level,ulceration,mitotic_index,perineural_invasion,immunohistochemistry,full_text_redacted,created_at
