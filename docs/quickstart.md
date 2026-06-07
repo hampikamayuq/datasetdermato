@@ -83,8 +83,22 @@ The script:
 
 ## 5. Use the visual curation app
 
+macOS/Linux:
+
 ```bash
-streamlit run scripts/dataset_app.py
+sh scripts/run_app.sh
+```
+
+Windows PowerShell:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_app.ps1
+```
+
+Any system with Python:
+
+```bash
+python -m streamlit run scripts/dataset_app.py
 ```
 
 Or on macOS/Linux:
