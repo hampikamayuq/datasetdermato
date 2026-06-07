@@ -14,6 +14,8 @@ $allowedImageTypes = @(
     "dermoscopic",
     "clinical: overview",
     "clinical: close-up",
+    "surgical",
+    "histopathology",
     "TBP tile: close-up",
     "TBP tile: overview"
 )
