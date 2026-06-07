@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "datasetdermato core standardized metadata row",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "filename",
+    "image_type",
+    "diagnosis"
+  ],
+  "properties": {
+    "filename": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Relative path or file name for the image."
+    },
+    "image_type": {
+      "type": "string",
+      "enum": [
+        "dermoscopic",
+        "clinical: overview",
+        "clinical: close-up",
+        "TBP tile: close-up",
+        "TBP tile: overview"
+      ]
+    },
+    "dermoscopic_type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "contact polarized",
+        "contact non-polarized",
+        "non-contact polarized",
+        null
+      ]
+    },
+    "age": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 120
+    },
+    "sex": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "male",
+        "female",
+        null
+      ]
+    },
+    "anatom_site_general": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fitzpatrick_skin_type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V",
+        "VI",
+        null
+      ]
+    },
+    "lesion_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "patient_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "diagnosis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "benign_malignant": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "benign",
+        "malignant",
+        "indeterminate",
+        "indeterminate/benign",
+        "indeterminate/malignant",
+        null
+      ]
+    },
+    "diagnosis_confirm_type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "histopathology",
+        "serial imaging showing no change",
+        "single image expert consensus",
+        "confocal microscopy with consensus dermoscopy",
+        "single contributor clinical assessment",
+        null
+      ]
+    },
+    "melanocytic": {
+      "type": [
+        "integer",
+        "boolean",
+        "null"
+      ]
+    },
+    "nevus_type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "blue",
+        "combined",
+        "nevus NOS",
+        "deep penetrating",
+        "halo",
+        "persistent/recurrent",
+        "pigmented spindle cell of reed",
+        "plexiform spindle cell",
+        "special site",
+        "spitz",
+        null
+      ]
+    },
+    "mel_class": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "melanoma in situ",
+        "invasive melanoma",
+        "recurrent/persistent melanoma, in situ",
+        "recurrent/persistent melanoma, invasive",
+        "melanoma NOS",
+        null
+      ]
+    },
+    "mel_type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "superficial spreading melanoma",
+        "nodular melanoma",
+        "lentigo maligna melanoma",
+        "acral lentiginous melanoma",
+        "melanoma NOS",
+        null
+      ]
+    }
+  }
+}
