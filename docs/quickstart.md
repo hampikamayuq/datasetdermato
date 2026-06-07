@@ -43,7 +43,17 @@ On Windows, this command keeps a PowerShell fallback:
 powershell -ExecutionPolicy Bypass -File scripts/validate_all.ps1
 ```
 
-## 3. Review source and ethics status
+## 3. Test on GitHub
+
+The repository includes a GitHub Actions workflow that validates Linux, macOS, and Windows.
+
+```text
+GitHub -> Actions -> Dataset validation -> Run workflow
+```
+
+It also runs automatically on push and pull request.
+
+## 4. Review source and ethics status
 
 Before adding images:
 
@@ -52,7 +62,7 @@ Before adding images:
 - confirm ethics and governance status
 - decide whether the image can be public, controlled-access, or internal-only
 
-## 4. Register an image by command line
+## 5. Register an image by command line
 
 Python and dependencies are required:
 
@@ -81,7 +91,7 @@ The script:
 - appends rows to `metadata/dataset_manifest.csv`
 - appends rows to `metadata/standardized/core_metadata_template.csv`
 
-## 5. Use the visual curation app
+## 6. Use the visual curation app
 
 macOS/Linux:
 
@@ -107,7 +117,7 @@ Or on macOS/Linux:
 make app
 ```
 
-## 6. Audit before release
+## 7. Audit before release
 
 Before any dataset release:
 
