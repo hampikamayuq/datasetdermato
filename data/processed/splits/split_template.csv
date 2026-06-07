@@ -1,0 +1,2 @@
+image_id,filename,patient_id,lesion_id,diagnosis,split
+example_0001,data/processed/images/example_0001.jpg,patient_0001,lesion_0001,unknown,train
