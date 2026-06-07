@@ -1,1 +1,1 @@
-image_id,case_id,image_type,file_path,original_filename,acquisition_year,acquisition_period,device,width,height,illumination,approximate_distance,has_scale,quality_score,anonymization_status,has_identifying_risk,sha256,created_at
+image_id,case_id,image_type,file_path,original_filename,acquisition_year,acquisition_period,device,width,height,illumination,approximate_distance,has_scale,quality_score,duplicate_group_id,leakage_risk,anonymization_status,has_identifying_risk,sha256,created_at
