@@ -1,0 +1,1 @@
+dataset_version,subgroup_field,subgroup_value,patient_count,case_count,image_count,diagnosis_count,missing_metadata_count,evidence_gold_count,evidence_silver_count,evidence_bronze_count,notes
