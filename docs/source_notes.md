@@ -14,4 +14,4 @@ Each dataset needs separate license and access review before ingestion.
 
 ## ISIC
 
-The included ISIC files in `references/` are used as inspiration for field names, validation rules, and de-identification behavior. The Santa Casa project can keep richer project-specific fields whenever scientifically useful.
+The included ISIC files in `references/` are used as inspiration for field names, validation rules, and de-identification behavior. The project can keep richer service-specific fields whenever scientifically useful.
