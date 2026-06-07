@@ -10,4 +10,4 @@ validate:
 	$(PYTHON) scripts/dataset_validate.py
 
 app:
-	streamlit run scripts/dataset_app.py
+	$(PYTHON) -m streamlit run scripts/dataset_app.py
