@@ -52,7 +52,7 @@ Fill in any blank fields left in the manifest and core metadata rows that the sc
 Run validation to confirm no errors:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts/validate_metadata.ps1
+powershell -ExecutionPolicy Bypass -File scripts/validate_all.ps1
 ```
 
 ## 5. Quality checks
